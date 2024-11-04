@@ -562,10 +562,6 @@ previewers.vimgrep = defaulter(function(opts)
     end,
 
     define_preview = function(self, entry)
-        
-      if entry.index ~= 1 then
-        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
-      end
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)
@@ -577,6 +573,10 @@ previewers.vimgrep = defaulter(function(opts)
         if p == nil or p == "" then
           return
         end
+      end
+
+      if entry.index ~= 1 then
+        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
       end
 
       -- Workaround for unnamed buffer when using builtin.buffer

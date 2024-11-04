@@ -584,7 +584,7 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        if entry.index ~= 1 then
+        if entry.index == 1 then
           assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
         end
 

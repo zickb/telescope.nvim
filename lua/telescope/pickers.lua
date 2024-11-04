@@ -1210,7 +1210,7 @@ function Picker:refresh_previewer()
     self:_increment "previewed"
 
     
-    if entry.index ~= 1 then
+    if self._selection_entry.index ~= 1 then
       assert(nil, 'test telescope branch 2: ' .. vim.inspect(self._selection_entry))
     end
     self.previewer:preview(self._selection_entry, status)

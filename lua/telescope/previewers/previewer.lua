@@ -52,6 +52,9 @@ function Previewer:preview(entry, status)
     end
   end
 
+  if self._selection_entry.index ~= 1 then
+    assert(nil, 'test telescope branch 2: ' .. vim.inspect(self._selection_entry))
+  end
   return self:preview_fn(entry, status)
 end
 

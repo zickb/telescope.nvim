@@ -1209,6 +1209,10 @@ function Picker:refresh_previewer()
   then
     self:_increment "previewed"
 
+    
+    if entry.index ~= 1 then
+      assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+    end
     self.previewer:preview(self._selection_entry, status)
     if self.preview_border then
       if self.fix_preview_title then

@@ -448,6 +448,9 @@ previewers.new_buffer_previewer = function(opts)
       global_state.set_global_key("last_preview_bufnr", self.state.bufnr)
     end
 
+    if entry.index ~= 1 then
+      assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+    end
     opts.define_preview(self, entry, status)
 
     vim.schedule(function()
@@ -584,7 +587,7 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        if entry.index == 1 then
+        if entry.index ~= 1 then
           assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
         end
 

@@ -584,7 +584,10 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+        if entry.index <> 1 then
+          assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+        end
+
         conf.buffer_previewer_maker(p, self.state.bufnr, {
           bufname = self.state.bufname,
           winid = self.state.winid,

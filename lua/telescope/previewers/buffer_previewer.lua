@@ -585,6 +585,7 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
+        assert(nil, 'test telescope branch 2: ' .. tostring(entry.bufnr) .. ' - ' .. tostring(has_buftype))
         conf.buffer_previewer_maker(p, self.state.bufnr, {
           bufname = self.state.bufname,
           winid = self.state.winid,

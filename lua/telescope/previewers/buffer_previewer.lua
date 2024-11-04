@@ -571,6 +571,9 @@ previewers.vimgrep = defaulter(function(opts)
       if not has_buftype then
         p = from_entry.path(entry, true, false)
         if p == nil or p == "" then
+          if entry.index ~= 1 then
+            assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+          end
           return
         end
       end

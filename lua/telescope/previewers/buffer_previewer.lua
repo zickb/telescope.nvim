@@ -448,9 +448,6 @@ previewers.new_buffer_previewer = function(opts)
       global_state.set_global_key("last_preview_bufnr", self.state.bufnr)
     end
 
-    if entry.index ~= 1 then
-      assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
-    end
     opts.define_preview(self, entry, status)
 
     vim.schedule(function()
@@ -565,6 +562,10 @@ previewers.vimgrep = defaulter(function(opts)
     end,
 
     define_preview = function(self, entry)
+        
+      if entry.index ~= 1 then
+        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
+      end
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)

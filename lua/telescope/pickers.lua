@@ -1097,8 +1097,6 @@ function Picker:set_selection(row)
 
   if entry.index ~= 1 then
     assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
-  else
-    assert(nil, 'test telescope branch 1: ' .. vim.inspect(entry))
   end
   if not entry then
     -- also refresh previewer when there is no entry selected, so the preview window is cleared

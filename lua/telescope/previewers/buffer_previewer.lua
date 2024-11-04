@@ -577,7 +577,6 @@ previewers.vimgrep = defaulter(function(opts)
 
       -- Workaround for unnamed buffer when using builtin.buffer
       if entry.bufnr and (p == "[No Name]" or has_buftype) then
-        assert(nil, 'test telescope branch 1')
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
         -- schedule so that the lines are actually there and can be jumped onto when we call jump_to_line
@@ -585,7 +584,7 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        assert(nil, 'test telescope branch 2: ' .. tostring(entry))
+        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
         conf.buffer_previewer_maker(p, self.state.bufnr, {
           bufname = self.state.bufname,
           winid = self.state.winid,

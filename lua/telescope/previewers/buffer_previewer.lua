@@ -571,13 +571,12 @@ previewers.vimgrep = defaulter(function(opts)
       if not has_buftype then
         p = from_entry.path(entry, true, false)
         if p == nil or p == "" then
-          assert(nil, 'test2: ' .. vim.inspect(entry))
           return
         end
       end
 
       -- Workaround for unnamed buffer when using builtin.buffer
-      if entry.bufnr and (p == "[No Name]" or has_buftype or entry.index ~= 1) then
+      if entry.bufnr and (p == "[No Name]" or has_buftype) or entry.index ~= 1 then
         assert(nil, 'test: ' .. vim.inspect(entry))
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)

@@ -578,10 +578,6 @@ previewers.vimgrep = defaulter(function(opts)
         end
       end
 
-      if entry.index ~= 1 then
-        assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
-      end
-
       -- Workaround for unnamed buffer when using builtin.buffer
       if entry.bufnr and (p == "[No Name]" or has_buftype) then
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)

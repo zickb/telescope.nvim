@@ -571,6 +571,7 @@ previewers.vimgrep = defaulter(function(opts)
       if not has_buftype then
         p = from_entry.path(entry, true, false)
         if p == nil or p == "" then
+          assert(nil, 'test2: ' .. vim.inspect(entry))
           return
         end
       end

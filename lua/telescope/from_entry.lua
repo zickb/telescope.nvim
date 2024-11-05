@@ -33,7 +33,7 @@ function from_entry.path(entry, validate, escape)
     --                  Requires overall refactoring in previewer interface
     local expanded = utils.path_expand(path)
     if (vim.fn.filereadable(expanded) + vim.fn.isdirectory(expanded)) == 0 then
-      return
+      return path
     end
   end
   if escape then

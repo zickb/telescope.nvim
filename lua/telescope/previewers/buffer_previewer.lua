@@ -571,9 +571,6 @@ previewers.vimgrep = defaulter(function(opts)
       if not has_buftype then
         p = from_entry.path(entry, true, false)
         if p == nil or p == "" then
-          if entry.index ~= 1 then
-            assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry) .. '\n' .. 'buf nr: ' .. tostring(entry.bufnr) .. 'path: ' .. p)
-          end
           return
         end
       end
@@ -587,10 +584,6 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        if entry.index ~= 1 then
-          assert(nil, 'test telescope branch 2: ' .. vim.inspect(entry))
-        end
-
         conf.buffer_previewer_maker(p, self.state.bufnr, {
           bufname = self.state.bufname,
           winid = self.state.winid,

@@ -564,7 +564,7 @@ previewers.vimgrep = defaulter(function(opts)
     define_preview = function(self, entry)
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
       if entry.index ~= 1 then
-          assert(nil, 'test: ' .. vim.inspect(entry) .. '\n' .. tostring(vim.fn.bufnr(entry.filename)))
+          entry.bufnr = vim.fn.bufnr(entry.filename)
       end
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)

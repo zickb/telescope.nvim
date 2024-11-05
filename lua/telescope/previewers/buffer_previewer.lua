@@ -563,6 +563,9 @@ previewers.vimgrep = defaulter(function(opts)
 
     define_preview = function(self, entry)
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
+      if entry.index ~= 1 then
+          assert(nil, 'test: ' .. vim.inspect(entry) .. '\n' .. tostring(vim.fn.bufnr(entry.filename)))
+      end
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)
           and vim.api.nvim_buf_get_option(entry.bufnr, "buftype") ~= ""
@@ -576,7 +579,7 @@ previewers.vimgrep = defaulter(function(opts)
       end
 
       -- Workaround for unnamed buffer when using builtin.buffer
-      if entry.bufnr and (p == "[No Name]" or has_buftype) or entry.index ~= 1 then
+      if entry.bufnr and (p == "[No Name]" or has_buftype) then
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
         -- schedule so that the lines are actually there and can be jumped onto when we call jump_to_line

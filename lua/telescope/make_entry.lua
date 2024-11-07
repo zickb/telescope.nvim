@@ -38,6 +38,7 @@ local entry_display = require "telescope.pickers.entry_display"
 local utils = require "telescope.utils"
 local strings = require "plenary.strings"
 local Path = require "plenary.path"
+local log = require "telescope.log"
 
 local treesitter_type_highlight = {
   ["associated"] = "TSConstant",
@@ -493,7 +494,7 @@ function make_entry.gen_from_quickfix(opts)
       start = entry.start,
       finish = entry.finish,
 
-      assert(nil, 'test telescope: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
+      log.warn('test telescope: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
     }, opts)
   end
 end

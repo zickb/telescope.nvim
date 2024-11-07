@@ -15,7 +15,7 @@ return function(opts)
   local results = {}
   for k, v in ipairs(input_results) do
     local entry = entry_maker(v)
-    if k == 1 then
+    if k == 2 then
       assert(nil, 'test telescope: ' .. vim.inspect(entry))
     end
     if entry then

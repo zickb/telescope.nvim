@@ -15,8 +15,8 @@ return function(opts)
   local results = {}
   for k, v in ipairs(input_results) do
     local entry = entry_maker(v)
-    if k == 3 then
-      assert(nil, 'test telescope: ' .. vim.inspect(entry))
+    if k == 1 then
+      assert(nil, 'test telescope: ' .. vim.inspect(entry()))
     end
     if entry then
       entry.index = k

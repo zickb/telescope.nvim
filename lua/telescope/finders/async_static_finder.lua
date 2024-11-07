@@ -17,9 +17,6 @@ return function(opts)
     local entry = entry_maker(v)
 
     if entry then
-      if k == 1 then
-        assert(nil, 'test telescope: ' .. vim.inspect(entry))
-      end
       entry.index = k
       table.insert(results, entry)
     end

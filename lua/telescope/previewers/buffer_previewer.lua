@@ -5,7 +5,6 @@ local putils = require "telescope.previewers.utils"
 local Previewer = require "telescope.previewers.previewer"
 local conf = require("telescope.config").values
 local global_state = require "telescope.state"
-local log = require "telescope.log"
 
 local pscan = require "plenary.scandir"
 
@@ -564,7 +563,6 @@ previewers.vimgrep = defaulter(function(opts)
 
     define_preview = function(self, entry)
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
-      log.warn('test telescope2: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
       if entry.index ~= 1 then
           entry.bufnr = vim.fn.bufnr(entry.filename)
       end
@@ -582,7 +580,6 @@ previewers.vimgrep = defaulter(function(opts)
 
       -- Workaround for unnamed buffer when using builtin.buffer
       if entry.bufnr and (p == "[No Name]" or has_buftype) then
-        log.warn('test')
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
         putils.highlighter(self.state.bufnr, vim.bo[entry.bufnr].filetype, opts)
@@ -591,7 +588,6 @@ previewers.vimgrep = defaulter(function(opts)
           jump_to_line(self, self.state.bufnr, entry)
         end)
       else
-        log.warn('test2')
         conf.buffer_previewer_maker(p, self.state.bufnr, {
           bufname = self.state.bufname,
           winid = self.state.winid,

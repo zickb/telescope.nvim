@@ -572,7 +572,7 @@ previewers.vimgrep = defaulter(function(opts)
         or false
       local p
       if not has_buftype then
-        p = from_entry.path(entry, false, false)
+        p = from_entry.path(entry, true, false)
         if p == nil or p == "" then
           return
         end

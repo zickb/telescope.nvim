@@ -5,8 +5,6 @@ local conf = require("telescope.config").values
 local Job = require "plenary.job"
 local Path = require "plenary.path"
 
-local log = require "telescope.log"
-
 local telescope_utils = require "telescope.utils"
 
 local utils = {}
@@ -153,11 +151,9 @@ utils.highlighter = function(bufnr, ft, opts)
 
   local ts_success
   if ts_highlighting then
-    log.warn('treesitter')
     ts_success = utils.ts_highlighter(bufnr, ft)
   end
   if not ts_highlighting or ts_success == false then
-    log.warn('regex')
     utils.regex_highlighter(bufnr, ft)
   end
 end

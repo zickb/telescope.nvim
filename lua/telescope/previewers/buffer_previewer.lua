@@ -6,6 +6,7 @@ local Previewer = require "telescope.previewers.previewer"
 local conf = require("telescope.config").values
 local global_state = require "telescope.state"
 local log = require "telescope.log"
+local utils = require "telescope.utils"
 
 local pscan = require "plenary.scandir"
 
@@ -565,7 +566,9 @@ previewers.vimgrep = defaulter(function(opts)
     define_preview = function(self, entry)
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
       log.warn('test telescope2: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
-
+      if entry.index ~= 1 then
+          entry.bufnr = vim.fn.bufnr(entry.filename)
+      end
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)
           and vim.api.nvim_buf_get_option(entry.bufnr, "buftype") ~= ""
@@ -583,6 +586,7 @@ previewers.vimgrep = defaulter(function(opts)
         log.warn('test')
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+        utils.highlighter(entry.bufnr, vim.bo[buf].filetype, opts)
         -- schedule so that the lines are actually there and can be jumped onto when we call jump_to_line
         vim.schedule(function()
           jump_to_line(self, self.state.bufnr, entry)

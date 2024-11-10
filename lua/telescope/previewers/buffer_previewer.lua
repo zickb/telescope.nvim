@@ -564,8 +564,8 @@ previewers.vimgrep = defaulter(function(opts)
 
     define_preview = function(self, entry)
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
+      log.warn('test telescope2: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
       if entry.index ~= 1 then
-          log.warn('test telescope2: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
           entry.bufnr = vim.fn.bufnr(entry.filename)
       end
       local has_buftype = entry.bufnr
@@ -582,6 +582,7 @@ previewers.vimgrep = defaulter(function(opts)
 
       -- Workaround for unnamed buffer when using builtin.buffer
       if entry.bufnr and (p == "[No Name]" or has_buftype) then
+        log.warn('test')
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
         -- schedule so that the lines are actually there and can be jumped onto when we call jump_to_line

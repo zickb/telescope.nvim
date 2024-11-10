@@ -5,6 +5,8 @@ local conf = require("telescope.config").values
 local Job = require "plenary.job"
 local Path = require "plenary.path"
 
+local log = require "telescope.log"
+
 local telescope_utils = require "telescope.utils"
 
 local utils = {}

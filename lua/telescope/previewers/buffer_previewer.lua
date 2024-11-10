@@ -6,7 +6,6 @@ local Previewer = require "telescope.previewers.previewer"
 local conf = require("telescope.config").values
 local global_state = require "telescope.state"
 local log = require "telescope.log"
-local utils = require "telescope.utils"
 
 local pscan = require "plenary.scandir"
 

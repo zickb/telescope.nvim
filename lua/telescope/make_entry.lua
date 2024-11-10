@@ -480,8 +480,8 @@ function make_entry.gen_from_quickfix(opts)
   local get_filename = get_filename_fn()
   return function(entry)
     local filename = vim.F.if_nil(entry.filename, get_filename(entry.bufnr))
-    
-    return make_entry.set_default_entry_mt({       
+
+    return make_entry.set_default_entry_mt({
       value = entry,
       ordinal = (not hidden and filename or "") .. " " .. entry.text,
       display = make_display,
@@ -493,8 +493,6 @@ function make_entry.gen_from_quickfix(opts)
       text = entry.text,
       start = entry.start,
       finish = entry.finish,
-
-      -- log.warn('test telescope: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
     }, opts)
   end
 end

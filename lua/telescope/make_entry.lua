@@ -494,7 +494,7 @@ function make_entry.gen_from_quickfix(opts)
       start = entry.start,
       finish = entry.finish,
 
-      log.warn('test telescope: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
+      -- log.warn('test telescope: ' .. vim.inspect(entry) .. ' buf nr: ' .. tostring(entry.bufnr))
     }, opts)
   end
 end

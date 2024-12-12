@@ -562,10 +562,6 @@ previewers.vimgrep = defaulter(function(opts)
     end,
 
     define_preview = function(self, entry)
-      -- Custom language server protocol extensions can result in servers sending URIs with custom schemes. Plugins are able to load these via `BufReadCmd` autocmds.
-      if from_entry.path(entry, false, false):sub(1, 26) == 'roslyn-source-generated://' then
-        entry.bufnr = vim.fn.bufnr(entry.filename)
-      end
       -- builtin.buffers: bypass path validation for terminal buffers that don't have appropriate path
       local has_buftype = entry.bufnr
           and vim.api.nvim_buf_is_valid(entry.bufnr)

@@ -583,7 +583,6 @@ previewers.vimgrep = defaulter(function(opts)
       if entry.bufnr and (p == "[No Name]" or has_buftype) then
         local lines = vim.api.nvim_buf_get_lines(entry.bufnr, 0, -1, false)
         vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-        putils.highlighter(self.state.bufnr, vim.bo[entry.bufnr].filetype, opts)
         -- schedule so that the lines are actually there and can be jumped onto when we call jump_to_line
         vim.schedule(function()
           jump_to_line(self, self.state.bufnr, entry)
